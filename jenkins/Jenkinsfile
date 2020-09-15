@@ -1,12 +1,13 @@
 pipeline {
-    agent  {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent  none
     stages {
         stage('Build') {
+            agent  {
+                docker {
+                image 'maven:3-alpine'
+                args '-v /root/.m2:/root/.m2'
+                    }
+                }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
@@ -23,7 +24,7 @@ pipeline {
         }
         stage('Tag') {
             steps {
-                sh ' docker build -t applatest .'
+                sh ' docker build -t app:latest .'
                 sh ' docker tag app thangqt/app:latest'
                 sh ' docker tag app thangqt/app:$BUILD_NUMBER'                
             }  
