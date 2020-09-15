@@ -21,5 +21,20 @@ pipeline {
                 }
             }
         }
+        stage('Tag') {
+            steps {
+                sh ' docker build -t app .'
+                sh ' docker tag app thangqt/app:lastest'
+                sh ' docker tag app thangqt/app:$BUILD_NUMBER'                
+            }  
+        }
+        stage('Push'){
+            steps {
+                withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
+                    sh  'docker push thangqt/app:latest'
+                    sh  'docker push thangqt/app:$BUILD_NUMBER' 
+        }
+            }
+        }
     }
 }
