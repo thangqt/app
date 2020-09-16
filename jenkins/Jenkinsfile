@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh ' scp deploy.sh tquocthang97@35.192.221.234:/home/tquocthang97/app'
                 sh ' ssh -t tquocthang97@35.192.221.234 'chmod 777 deploy.sh''
-                sh ' ssh -t tquocthang97@35.192.221.234 'docker run -p 8080:8080 -d thangqt/app''                
+                sh ' deploy.sh'                
             }  
         }
     }
