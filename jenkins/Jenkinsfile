@@ -36,7 +36,7 @@ pipeline {
         stage('Pus331h'){
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh', usernameVariable: 'tquocthang97', keyFileVariable: 'ssh')]) {
-                    sh 'scp deploy.sh  -i $ssh tquocthang97@35.192.221.234:/home/tquocthang97/'
+                    sh 'scp deploy.sh  -i $ssh -o StrictHostKeyChecking=no tquocthang97@35.192.221.234:/home/tquocthang97/'
         }
             }
         }
