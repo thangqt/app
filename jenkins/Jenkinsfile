@@ -35,7 +35,7 @@ pipeline {
                 sh 'docker kill $(docker ps -q)'
             }
         }
-        stage('Tag') {
+        stage('asdasdasdasdasd') {
             steps {
                 sh ' scp deploy.sh tquocthang97@35.192.221.234:/home/tquocthang97/app'
                 sh ' ssh -t tquocthang97@35.192.221.234 'chmod 777 deploy.sh''
